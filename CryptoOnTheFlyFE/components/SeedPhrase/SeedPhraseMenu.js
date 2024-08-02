@@ -4,43 +4,38 @@ import RowSeedPhraseMenu from './RowSeedPhraseMenu';
 import { createNewSeedPhrase } from '../../utils/SeedServiceHandler';
 
 const SeedPhraseMenu = ({seedSource}) => {
-
-    const [wallet, setWallet] = useState({
-        address: '',
-        privateKey: '',
-        mnemonic: '',
-    });
+    const [wallet, setWallet] = useState(null);
 
     useEffect(() => {
-        const walletDetails = createNewSeedPhrase();
-        console.log('Address:', walletDetails.address);
-        console.log('Private Key:', walletDetails.privateKey);
-        console.log('Mnemonic:', walletDetails.mnemonic);
-        setWallet(walletDetails);
+        if (seedSource === 'create') {
+            const walletDetails = createNewSeedPhrase();
+            walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
+            setWallet(walletDetails);
+        }
     }, []); 
 
   console.log("Seed source: ", seedSource)
   return (
     <View style={styles.container}>
       <RowSeedPhraseMenu
-        firstInput={{textPlaceholder: "Word 1", textValue: null }}
-        secondInput={{textPlaceholder: "Word 2", textValue: null }}
-        thirdInput={{textPlaceholder: "Word 3", textValue: null }}
+        firstInput={{textPlaceholder: "Word 1", textValue: wallet? wallet.mnemonic[0]: null }}
+        secondInput={{textPlaceholder: "Word 2", textValue: wallet? wallet.mnemonic[1] : null }}
+        thirdInput={{textPlaceholder: "Word 3", textValue: wallet? wallet.mnemonic[2] : null }}
       />
       <RowSeedPhraseMenu
-        firstInput={{textPlaceholder: "Word 4", textValue: null }}
-        secondInput={{textPlaceholder: "Word 5", textValue: null }}
-        thirdInput={{textPlaceholder: "Word 6", textValue: null }}
+        firstInput={{textPlaceholder: "Word 4", textValue: wallet? wallet.mnemonic[3] : null }}
+        secondInput={{textPlaceholder: "Word 5", textValue: wallet? wallet.mnemonic[4] : null }}
+        thirdInput={{textPlaceholder: "Word 6", textValue: wallet? wallet.mnemonic[5] : null }}
       />
       <RowSeedPhraseMenu
-        firstInput={{textPlaceholder: "Word 7", textValue: null }}
-        secondInput={{textPlaceholder: "Word 8", textValue: null }}
-        thirdInput={{textPlaceholder: "Word 9", textValue: null }}
+        firstInput={{textPlaceholder: "Word 7", textValue: wallet? wallet.mnemonic[6] : null }}
+        secondInput={{textPlaceholder: "Word 8", textValue: wallet? wallet.mnemonic[7] : null }}
+        thirdInput={{textPlaceholder: "Word 9", textValue: wallet? wallet.mnemonic[8] : null }}
       />
       <RowSeedPhraseMenu
-        firstInput={{textPlaceholder: "Word 10", textValue: null }}
-        secondInput={{textPlaceholder: "Word 11", textValue: null }}
-        thirdInput={{textPlaceholder: "Word 12", textValue: null }}
+        firstInput={{textPlaceholder: "Word 10", textValue: wallet? wallet.mnemonic[9] : null }}
+        secondInput={{textPlaceholder: "Word 11", textValue: wallet? wallet.mnemonic[10] : null }}
+        thirdInput={{textPlaceholder: "Word 12", textValue: wallet? wallet.mnemonic[11] : null }}
       />
     </View>
   );
