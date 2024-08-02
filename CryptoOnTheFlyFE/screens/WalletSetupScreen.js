@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import SeedPhraseMenu from '../components/SeedPhrase/SeedPhraseMenu';
+import ContinueSetupWalletButton from '../components/ContinueSetupWalletButton';
 
 const WalletSetupScreen = ({ route, navigation }) => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Wallet Setup</Text>
       <SeedPhraseMenu seedSource={route.params.seedSource}/>
-      <Button
-        title="Back"
-        onPress={() => navigation.navigate('Welcome')}
-      />
+      <ContinueSetupWalletButton seedPhrase="Fruta" navigation={navigation}/>
     </View>
   );
 };

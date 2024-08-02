@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import RowSeedPhraseMenu from './RowSeedPhraseMenu';
-import { createNewSeedPhrase } from '../../utils/SeedServiceHandler';
+import { createNewSeedPhrase } from '../../utils/WalletService';
 
 const SeedPhraseMenu = ({seedSource}) => {
     const [wallet, setWallet] = useState(null);

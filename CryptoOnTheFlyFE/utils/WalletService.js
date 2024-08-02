@@ -15,3 +15,12 @@ export function createNewSeedPhrase() {
         wallet
     }
 }
+
+//export function validateWallet(mnemonic) {
+//  try {
+//    ethers.Wallet.fromPhrase(mnemonic);
+//    return true;
+//  } catch (err) {
+//    return false;
+//  }
+//}
