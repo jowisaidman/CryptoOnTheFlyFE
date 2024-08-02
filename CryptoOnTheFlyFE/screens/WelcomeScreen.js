@@ -7,11 +7,11 @@ const WelcomeScreen = ({ navigation }) => {
       <Text style={styles.text}>Welcome Screen</Text>
       <Button
         title="Create Wallet"
-        onPress={() => navigation.navigate('WalletSetup')}
+        onPress={() => navigation.navigate('WalletSetup', {seedSource: 'create'})}
       />
     <Button
-        title="Setup Wallet"
-        onPress={() => navigation.navigate('WalletSetup')}
+        title="Import Wallet"
+        onPress={() => navigation.navigate('WalletSetup', {seedSource: 'import'})}
       />
     </View>
   );
