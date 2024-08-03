@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ScanQRScreen from '../screens/ScanQRScreen';
 import SignMessageScreen from '../screens/SignMessageScreen';
 import SignedMessageQRScreen from '../screens/SignedMessageQRScreen';
+import QRWalletAddressScreen from '../screens/QRWalletAddressScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const StackNavigator = () => {
         <Stack.Screen name="ScanQR" component={ScanQRScreen} />
         <Stack.Screen name="SignMessage" component={SignMessageScreen} />
         <Stack.Screen name="SignedMessageQR" component={SignedMessageQRScreen} />
+        <Stack.Screen name="QRWalletAddress" component={QRWalletAddressScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

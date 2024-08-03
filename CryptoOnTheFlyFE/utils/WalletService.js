@@ -1,4 +1,5 @@
 import * as ethers from 'ethers';
+import { getValueFor } from './SecureStorage';
 
 export function createNewSeedPhrase() {
     // TODO: do it with secure randomness & store it in device secureStore    
@@ -14,6 +15,11 @@ export function createNewSeedPhrase() {
         mnemonic,
         wallet
     }
+}
+
+export async function getWalletAddress() {
+  const walletMnemonic = await getValueFor("seedPhrase");
+  return ethers.Wallet.fromPhrase(walletMnemonic).address;
 }
 
 export function validateWallet(mnemonic) {

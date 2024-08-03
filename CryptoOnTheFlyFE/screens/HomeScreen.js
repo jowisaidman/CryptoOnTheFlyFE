@@ -13,11 +13,6 @@ const HomeScreen = ({navigation}) => {
     })();
   }, []);
 
-  const handleShowKey = async () => {
-      const result = await getValueFor("seedPhrase"); // TODO: shouldn't happen that no seedPhrase is found but if happen we send user to welcome screen?
-      console.log(result);
-  }
-
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
@@ -29,8 +24,8 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.text}>Home</Text>
       <Button 
-        title="Get key"
-        onPress={handleShowKey}
+        title="Sync wallet with plugin"
+        onPress={() => navigation.navigate("QRWalletAddress")}
       />
       <Button 
         title="Scan QR"
