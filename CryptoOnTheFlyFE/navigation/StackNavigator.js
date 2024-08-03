@@ -5,6 +5,7 @@ import WalletSetupScreen from '../screens/WalletSetupScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ScanQRScreen from '../screens/ScanQRScreen';
+import SignMessageScreen from '../screens/SignMessageScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const StackNavigator = () => {
         <Stack.Screen name="WalletSetup" component={WalletSetupScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ScanQR" component={ScanQRScreen} />
+        <Stack.Screen name="SignMessage" component={SignMessageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
