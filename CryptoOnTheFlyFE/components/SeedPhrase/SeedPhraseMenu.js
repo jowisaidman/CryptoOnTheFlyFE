@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import RowSeedPhraseMenu from './RowSeedPhraseMenu';
 import { createNewSeedPhrase } from '../../utils/WalletService';
 
-const SeedPhraseMenu = ({seedSource}) => {
-    const [wallet, setWallet] = useState(null);
-
+const SeedPhraseMenu = ({seedSource, wallet, setWallet}) => {
     useEffect(() => {
         if (seedSource === 'create') {
             const walletDetails = createNewSeedPhrase();

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button, StyleSheet } from 'react-native';
+import { Button } from 'react-native';
+import { save } from '../utils/SecureStorage';
 
 const ContinueSetupWalletButton = ({seedPhrase, navigation}) => {
   
-  const handleContinue = () => {
-    navigation.navigate('Welcome')
+  const handleContinue = async () => {
+    await save("seedPhrase", seedPhrase);
+    navigation.navigate('Home');
   }
 
   return (
@@ -14,8 +16,5 @@ const ContinueSetupWalletButton = ({seedPhrase, navigation}) => {
     />
   );
 };
-
-const styles = StyleSheet.create({ //TODO
-});
 
 export default ContinueSetupWalletButton;

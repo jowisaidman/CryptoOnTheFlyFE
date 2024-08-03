@@ -16,11 +16,11 @@ export function createNewSeedPhrase() {
     }
 }
 
-//export function validateWallet(mnemonic) {
-//  try {
-//    ethers.Wallet.fromPhrase(mnemonic);
-//    return true;
-//  } catch (err) {
-//    return false;
-//  }
-//}
+export function validateWallet(mnemonic) {
+  try {
+    ethers.Wallet.fromPhrase(mnemonic);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}

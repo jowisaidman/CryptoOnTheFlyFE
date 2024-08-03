@@ -1,15 +1,16 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import SeedPhraseMenu from '../components/SeedPhrase/SeedPhraseMenu';
 import ContinueSetupWalletButton from '../components/ContinueSetupWalletButton';
 
 const WalletSetupScreen = ({ route, navigation }) => {
+  const [wallet, setWallet] = useState(null);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Wallet Setup</Text>
-      <SeedPhraseMenu seedSource={route.params.seedSource}/>
-      <ContinueSetupWalletButton seedPhrase="Fruta" navigation={navigation}/>
+      <SeedPhraseMenu seedSource={route.params.seedSource} wallet={wallet} setWallet={setWallet}/>
+      <ContinueSetupWalletButton seedPhrase={wallet ? wallet.mnemonic.join(' ') : wallet} navigation={navigation}/>
     </View>
   );
 };
