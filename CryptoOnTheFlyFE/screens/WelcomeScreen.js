@@ -8,6 +8,7 @@ const WelcomeScreen = ({ navigation }) => {
     async function checkSeedPhrase() {
         let seedPhrase = await getValueFor("seedPhrase");
         if (seedPhrase) {
+            console.log("Seed phrase: ", seedPhrase);
             navigation.navigate("Home");
         }
     }

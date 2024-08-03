@@ -30,8 +30,7 @@ export default function ScanQRScreen({ navigation }) {
     console.log("Saving QR info and scanning next");
   }
 
-  function handleBarCodeScanned({ type, data }) {
-    console.log(`QR code with type ${type} and data ${data} has been scanned!`);
+  function handleBarCodeScanned({ data }) {
     setScannedData(data);
     setQrScannedCompleted(true)
   }

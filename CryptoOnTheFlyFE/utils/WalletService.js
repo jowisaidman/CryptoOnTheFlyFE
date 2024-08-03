@@ -24,3 +24,26 @@ export function validateWallet(mnemonic) {
     return false;
   }
 }
+
+export async function signMessage(message, mnemonic) {
+  const formattedMessage = JSON.parse(message); // TODO: how we handle this? if a message is not a json? should be check with the plugin
+  console.log(formattedMessage)
+
+  const gasLimitHex = '0x' + formattedMessage.gasLimit.toString(16);
+  const transaction = {
+    type: formattedMessage.type,
+    chainId: formattedMessage.chainId,
+    nonce: formattedMessage.nonce,
+    maxPriorityFeePerGas: ethers.parseUnits(formattedMessage.maxPriorityFeePerGas, 'gwei'),
+    maxFeePerGas: ethers.parseUnits(formattedMessage.maxFeePerGas, 'gwei'),
+    gasLimit: gasLimitHex, //ethers.hexlify(formattedMessage.gasLimit),
+    to: formattedMessage.to,
+    value: ethers.parseEther(formattedMessage.value), 
+    data: formattedMessage.data,
+    accessList: formattedMessage.accessList
+  }
+
+  const wallet = new ethers.Wallet.fromPhrase(mnemonic);
+
+  return await wallet.signTransaction(transaction);
+}
