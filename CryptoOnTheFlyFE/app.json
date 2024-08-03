@@ -28,7 +28,15 @@
       [
         "expo-secure-store",
         {
-          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+          "faceIDPermission": "Allow CryptoOnTheFly to access your Face ID biometric data."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow CryptoOnTheFly to access your camera",
+          "microphonePermission": "Allow CryptoOnTheFly to access your microphone",
+          "recordAudioAndroid": true
         }
       ]
     ]

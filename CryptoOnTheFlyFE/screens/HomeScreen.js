@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { getValueFor} from '../utils/SecureStorage';
+import { getValueFor } from '../utils/SecureStorage';
+import { Camera } from 'expo-camera';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+  const [hasPermission, setHasPermission] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
 
   const handleShowKey = async () => {
-      const result = await getValueFor("seedPhrase"); // TODO: handle error
+      const result = await getValueFor("seedPhrase"); // TODO: shouldn't happen that no seedPhrase is found but if happen we send user to welcome screen?
       console.log(result);
+  }
+
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
   }
 
   return (
@@ -14,20 +30,26 @@ const HomeScreen = () => {
       <Text style={styles.text}>Home</Text>
       <Button 
         title="Get key"
-        onPress={() => handleShowKey("seedPhrase")}
+        onPress={handleShowKey}
+      />
+      <Button 
+        title="Scan QR"
+        onPress={() => navigation.navigate('ScanQR')}
       />
     </View>
   );
 };
 
-//TOOD: during the app init we should save in the normal storage or do a get to secureStorage and check if user already saved a wallet.
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    text: {
+      fontSize: 18,
+      marginBottom: 10,
+    },
 });
 
 export default HomeScreen;
