@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import RowSeedPhraseMenu from './RowSeedPhraseMenu';
-import { createNewSeedPhrase } from '../../utils/WalletService';
 
-const SeedPhraseMenu = ({seedSource, wallet, setWallet}) => {
-    useEffect(() => {
-        if (seedSource === 'create') {
-            const walletDetails = createNewSeedPhrase();
-            walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
-            setWallet(walletDetails);
-        }
-    }, []); 
+const SeedPhraseMenu = ({wallet}) => {
 
-  console.log("Seed source: ", seedSource)
   return (
     <View style={styles.container}>
       <RowSeedPhraseMenu

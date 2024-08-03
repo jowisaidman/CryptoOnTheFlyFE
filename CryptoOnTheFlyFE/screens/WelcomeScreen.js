@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { getValueFor} from '../utils/SecureStorage';
 
 const WelcomeScreen = ({ navigation }) => {
-  const [loader, setLoader] = useState(false);
-  useEffect(() => {
+
+    useEffect(() => {
     async function checkSeedPhrase() {
         let seedPhrase = await getValueFor("seedPhrase");
         if (seedPhrase) {
