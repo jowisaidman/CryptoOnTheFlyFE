@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { Camera } from 'expo-camera';
-import { getWalletAddress } from '../utils/WalletService';
+import { getWalletAddress, getWalletAlias } from '../utils/WalletService';
 
 const HomeScreen = ({navigation}) => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -11,9 +11,7 @@ const HomeScreen = ({navigation}) => {
     (async () => {
         const { status } = await Camera.requestCameraPermissionsAsync();
         const address = await getWalletAddress();
-        const firstPart = address.substring(0, 5);
-        const lastPart = address.substring(address.length - 5);
-        const shortenedAddress = `${firstPart}.....${lastPart}`;
+        const shortenedAddress = getWalletAlias(address);
         setWalletAddress(shortenedAddress);
         setHasPermission(status === 'granted');
     })();

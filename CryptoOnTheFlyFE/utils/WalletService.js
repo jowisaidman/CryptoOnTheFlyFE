@@ -22,6 +22,12 @@ export async function getWalletAddress() {
   return ethers.Wallet.fromPhrase(walletMnemonic).address;
 }
 
+export function getWalletAlias(address) {
+  const firstPart = address.substring(0, 5);
+  const lastPart = address.substring(address.length - 5);
+  return `${firstPart}.....${lastPart}`;
+}
+
 export function validateWallet(mnemonic) {
   try {
     ethers.Wallet.fromPhrase(mnemonic);
