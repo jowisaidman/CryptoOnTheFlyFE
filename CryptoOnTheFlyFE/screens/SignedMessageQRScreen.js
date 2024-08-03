@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 
 const SignedMessageQRScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{route.params.signedMessage}</Text>
+      <Text style={styles.text}>This is your signed message, scan it from your plugin</Text>
+      <QRCode value={route.params.signedMessage} size={300} />
     </View>
   );
 };
@@ -17,8 +19,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 16,
+    marginBottom: 100,
   },
 });
 

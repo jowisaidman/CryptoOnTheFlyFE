@@ -26,4 +26,3 @@ To solve the issue run:
 - `brew install watchman`
 - `mkdir -p ~/.config/watchman`
 - `echo '{"max_watch_root": 524288, "max_open_files": 1024}' > ~/.config/watchman/watchman.json`
-
