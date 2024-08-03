@@ -1,12 +1,10 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function ScanQRScreen({ navigation }) {
-  const [facing, setFacing] = useState('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [scannedData, setScannedData] = useState('');
-  const [qrScanCompleted, setQrScannedCompleted] = useState(false);
 
   if (!permission) {
     return <Text>No access to camera, please give permissions in settings.</Text>
@@ -21,47 +19,20 @@ export default function ScanQRScreen({ navigation }) {
     );
   }
 
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  }
-
-  function handleQrScanStep() {
-    //TODO: Implement this
-    console.log("Saving QR info and scanning next");
-  }
-
   function handleBarCodeScanned({ data }) {
     setScannedData(data);
-    setQrScannedCompleted(true)
+    navigation.navigate('SignMessage', {messageInfo: scannedData})
   }
 
   return (
     <View style={styles.container}>
         <CameraView 
             style={styles.camera} 
-            facing={facing}   
+            facing='back'   
             onBarcodeScanned={handleBarCodeScanned}
             barcodeScannerSettings={{
                 barcodeTypes: ["qr"],
-            }}>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-                    <Text style={styles.text}>Flip Camera</Text>
-                </TouchableOpacity>
-            </View>
-        </CameraView>
-        {qrScanCompleted ? (
-        <View>
-            <Text style={styles.scannedData}> QR Scan done! </Text>
-            <Button title="Continue" onPress={() => navigation.navigate('SignMessage', {messageInfo: scannedData})}/>
-        </View>
-      ) : (
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => handleQrScanStep()}>
-            <Text style={styles.text}>Scan Next QR</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+        }}/>
     </View>
   );
 }
