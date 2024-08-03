@@ -12,11 +12,12 @@ const WalletSetupScreen = ({ route, navigation }) => {
     useEffect(() => {
         setTimeout(() => {
             if (route.params.seedSource === 'create') {
-            const walletDetails = createNewSeedPhrase();
-            walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
-            setWallet(walletDetails);
-            setIsLoading(false);
+                const walletDetails = createNewSeedPhrase();
+                walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
+                setWallet(walletDetails);
+                setIsLoading(false);
             }
+            setIsLoading(false);
         }, 250)
     }, []); 
 
@@ -26,6 +27,10 @@ const WalletSetupScreen = ({ route, navigation }) => {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>Wallet Setup</Text>
+                {route.params.seedSource === 'import' ? 
+                    <Text style={styles.importText}>Insert the each word in the corresponding placeholder</Text> 
+                    : 
+                    <Text style={styles.importText}>This is your secret phrase, write it down in a secure place!</Text>}
                 <SeedPhraseMenu wallet={wallet} />
                 <ContinueSetupWalletButton seedPhrase={wallet ? wallet.mnemonic.join(' ') : wallet} navigation={navigation}/>
             </View>
@@ -38,10 +43,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#1A1733',
   },
   text: {
     fontSize: 24,
-    marginBottom: 20,
+    fontWeight: 'bold',
+    color: '#FDFEFF',
+    marginBottom: '15%',
+  },
+  importText: {
+    fontSize: 16,
+    color: '#FDFEFF',
+    marginBottom: '5%',
+    textAlign: 'center',
   },
 });
 

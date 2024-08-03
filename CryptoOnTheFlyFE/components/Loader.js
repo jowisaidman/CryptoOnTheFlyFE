@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        backgroundColor: '#1A1733',
     },
     text: {
         marginTop: 20,
