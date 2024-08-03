@@ -5,6 +5,7 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export default function ScanQRScreen() {
   const [facing, setFacing] = useState('back');
   const [permission, requestPermission] = useCameraPermissions();
+  const [scannedData, setScannedData] = useState('');
 
   if (!permission) {
     return <Text>No access to camera, please give permissions in settings.</Text>
@@ -23,24 +24,39 @@ export default function ScanQRScreen() {
     setFacing(current => (current === 'back' ? 'front' : 'back'));
   }
 
+  function handleBarCodeScanned({ type, data }) {
+    console.log(`QR code with type ${type} and data ${data} has been scanned!`);
+    setScannedData(data);
+  }
+
   function scanningQR() {
     console.log("Scanning QR!");
   }
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing}>
+        <CameraView 
+            style={styles.camera} 
+            facing={facing}   
+            onBarcodeScanned={handleBarCodeScanned}
+            barcodeScannerSettings={{
+                barcodeTypes: ["qr"],
+            }}>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
+                    <Text style={styles.text}>Flip Camera</Text>
+                </TouchableOpacity>
+            </View>
+        </CameraView>
+        {scannedData ? (
+        <Text style={styles.scannedData}>Scanned Data: {scannedData}</Text>
+      ) : (
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Text style={styles.text}>Flip Camera</Text>
+          <TouchableOpacity style={styles.button} onPress={() => setScannedData('')}>
+            <Text style={styles.text}>Scan Next QR</Text>
           </TouchableOpacity>
         </View>
-      </CameraView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={scanningQR}>
-            <Text style={styles.text}>Scan next QR</Text>
-          </TouchableOpacity>
-        </View>
+      )}
     </View>
   );
 }
@@ -56,8 +72,8 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
     },
     camera: {
-      width: "80%",
-      height: "50%",
+      width: "90%",
+      height: "80%",
       borderRadius: 10,
       overflow: 'hidden',
     },
@@ -81,5 +97,9 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: 'white',
     },
-  });
+    scannedData: {
+        fontSize: 16,
+        marginTop: 10,
+      },
+});
   

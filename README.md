@@ -1,5 +1,9 @@
 # CryptoOnTheFlyFE
 
+## Introduction
+
+In this repository you will find a mobile application for a offline low cost cold wallet. You will be able to install this aplication in your phone, create or import and existing wallet and sign messages completely disconnected, giving a 2nd chance to your old phone to act as a hardware wallet.
+
 ## Setup & Run
 
 Inside /CryptoOnTheFlyFE run:

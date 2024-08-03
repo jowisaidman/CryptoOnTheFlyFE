@@ -7,7 +7,7 @@ export function createNewSeedPhrase() {
       randomBytes[i] = Math.floor(Math.random() * 256);
     }
 
-    const mnemonic = ethers.Mnemonic.entropyToPhrase(randomBytes);
+    const mnemonic = ethers.Mnemonic.entropyToPhrase(randomBytes); // TODO: check if I can add a password
     const wallet = ethers.Wallet.fromPhrase(mnemonic);
 
     return {
