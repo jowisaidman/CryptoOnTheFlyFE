@@ -12,8 +12,13 @@ Inside /CryptoOnTheFlyFE run:
 - `npm install`
 - `npx expo start`
 
+## Next features
+- Add extra security layer for password
+- Add blockexplorer
+- Add whitelist to sign transactions of some sites
 
-# Fix possible issues
+
+## Fix possible issues
 
 - Error: too many open files, watch
 ```
