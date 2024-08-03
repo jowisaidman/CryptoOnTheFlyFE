@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { getValueFor} from '../utils/SecureStorage';
 
 const WelcomeScreen = ({ navigation }) => {
+
+  useEffect(() => {
+    async function checkSeedPhrase() {
+        let seedPhrase = await getValueFor("seedPhrase");
+        if (seedPhrase) {
+            navigation.navigate("Home");
+        }
+    }
+    checkSeedPhrase();
+  }, []); 
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome Screen</Text>
