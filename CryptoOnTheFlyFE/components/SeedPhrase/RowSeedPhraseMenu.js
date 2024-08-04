@@ -8,19 +8,19 @@ const RowSeedPhraseMenu = ({firstInput, secondInput, thirdInput}) => {
         placeholder={firstInput.textPlaceholder}
         value={firstInput.textValue}
         style={styles.input}
-        placeholderTextColor="#878c8c"
+        placeholderTextColor="#000"
       />
       <TextInput
         placeholder={secondInput.textPlaceholder}
         value={secondInput.textValue}
         style={styles.input}
-        placeholderTextColor="#878c8c"
+        placeholderTextColor="#000"
       />
       <TextInput
         placeholder={thirdInput.textPlaceholder}
         value={thirdInput.textValue}
         style={styles.input}
-        placeholderTextColor="#878c8c"
+        placeholderTextColor="#000"
       />
     </View>
   );
@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: 115,
-    backgroundColor: '#116466',
+    backgroundColor: '#1f4a49',
     borderRadius: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: 16,
+    color: '#ffffff'
   },
   container: {
     flexDirection: 'row'

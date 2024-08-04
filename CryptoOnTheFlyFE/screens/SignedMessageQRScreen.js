@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1A1733',
+        //backgroundColor: '#1A1733',
     },
     text: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FDFEFF',
+        //color: '#FDFEFF',
         marginBottom: '5%',
     },
 });

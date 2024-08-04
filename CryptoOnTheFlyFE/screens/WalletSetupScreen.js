@@ -3,16 +3,22 @@ import { View, Text, StyleSheet } from 'react-native';
 import SeedPhraseMenu from '../components/SeedPhrase/SeedPhraseMenu';
 import ContinueSetupWalletButton from '../components/ContinueSetupWalletButton';
 import Loading from '../components/Loader';
-import { createNewSeedPhrase } from '../utils/WalletService';
+import { createNewSeedPhrase, getWalletAddress } from '../utils/WalletService';
+import { getValueFor } from '../utils/SecureStorage';
 
 const WalletSetupScreen = ({ route, navigation }) => {
     const [wallet, setWallet] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => {
+        setTimeout(async () => {
             if (route.params.seedSource === 'create') {
-                const walletDetails = createNewSeedPhrase();
+                //const walletDetails = createNewSeedPhrase(); // If we want to create new wallets on each init
+                const mnemonic = await getValueFor("seedPhrase");
+                let walletDetails = {
+                    wallet: getWalletAddress(),
+                    mnemonic
+                }
                 walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
                 setWallet(walletDetails);
                 setIsLoading(false);

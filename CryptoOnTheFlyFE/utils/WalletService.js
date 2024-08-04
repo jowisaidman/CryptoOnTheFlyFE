@@ -2,7 +2,7 @@ import * as ethers from 'ethers';
 import { getValueFor } from './SecureStorage';
 
 export function createNewSeedPhrase() {
-    // TODO: do it with secure randomness & store it in device secureStore    
+    // TODO: do it with secure randomness & store it in device secureStore 
     let randomBytes = new Uint8Array(16);
     for (let i = 0; i < 16; i++) {
       randomBytes[i] = Math.floor(Math.random() * 256);
@@ -46,14 +46,16 @@ export async function signMessage(message, mnemonic) {
     type: formattedMessage.type,
     chainId: formattedMessage.chainId,
     nonce: formattedMessage.nonce,
-    maxPriorityFeePerGas: ethers.parseUnits(formattedMessage.maxPriorityFeePerGas, 'gwei'),
-    maxFeePerGas: ethers.parseUnits(formattedMessage.maxFeePerGas, 'gwei'),
-    gasLimit: gasLimitHex, //ethers.hexlify(formattedMessage.gasLimit),
+    maxPriorityFeePerGas: ethers.parseUnits(formattedMessage.maxPriorityFeePerGas, 'wei').toString(),
+    maxFeePerGas: ethers.parseUnits(formattedMessage.maxFeePerGas, 'wei').toString(),
+    gasLimit: gasLimitHex,
     to: formattedMessage.to,
-    value: ethers.parseEther(formattedMessage.value), 
+    value: ethers.parseUnits(formattedMessage.value, 'ether').toString(), 
     data: formattedMessage.data,
     accessList: formattedMessage.accessList
   }
+
+  console.log("Transaction: ", transaction);
 
   const wallet = new ethers.Wallet.fromPhrase(mnemonic);
 

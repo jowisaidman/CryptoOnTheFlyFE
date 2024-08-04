@@ -5,13 +5,16 @@ import QRCode from 'react-native-qrcode-svg';
 import { getWalletAddress, getWalletAlias } from '../utils/WalletService';
 
 const QRWalletAddressScreen = ({ navigation }) => {
+    const [shortenedWalletAddress, setShortenedWalletAddress] = useState(null);
     const [walletAddress, setWalletAddress] = useState(null);
 
     useEffect(() => {
         async function obtainWalletAddress() {
             const wallet = await getWalletAddress();
-            const shortenedAddress = getWalletAlias(wallet);
-            setWalletAddress(shortenedAddress)
+            console.log("Wallet: ", wallet);
+            const shortAddress = getWalletAlias(wallet);
+            setShortenedWalletAddress(shortAddress);
+            setWalletAddress(wallet)
         }
         obtainWalletAddress();
     }, []); 
@@ -21,7 +24,7 @@ const QRWalletAddressScreen = ({ navigation }) => {
             <Text style={styles.title}>Wallet address</Text>
             {walletAddress ?
                 <View style={styles.qrView}>
-                    <Text style={styles.walletText}>{walletAddress}</Text>
+                    <Text style={styles.walletText}>{shortenedWalletAddress}</Text>
                     <QRCode value={walletAddress} size={300} /> 
                 </View>
             : null}
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1A1733',
+        //backgroundColor: '#1A1733',
     },
     qrView: {
         flex: 0.8,
@@ -45,13 +48,13 @@ const styles = StyleSheet.create({
     walletText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FDFEFF',
+        //color: '#FDFEFF',
         marginBottom: '5%',
     },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#FDFEFF',
+        //color: '#FDFEFF',
         marginBottom: '10%',
     },
 });

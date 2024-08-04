@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { getValueFor} from '../utils/SecureStorage';
 
 const WelcomeScreen = ({ navigation }) => {
@@ -18,20 +18,12 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add your wallet</Text>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Create Wallet"
-          style={styles.button}
-          onPress={() => navigation.navigate('WalletSetup', { seedSource: 'create' })}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Import Wallet"
-          style={styles.button}
-          onPress={() => navigation.navigate('WalletSetup', { seedSource: 'import' })}
-        />
-      </View>
+      <TouchableOpacity style={styles.touchOpacityButton} onPress={() => navigation.navigate('WalletSetup', { seedSource: 'create' })}>
+        <Text style={styles.text}>Create Wallet</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.touchOpacityButton} onPress={() => navigation.navigate('WalletSetup', { seedSource: 'import' })}>
+        <Text style={styles.text}>Import Wallet</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -45,20 +37,25 @@ const styles = StyleSheet.create({
       backgroundColor: '#1A1733',
     },
     title: {
-      fontSize: 24,
+      fontSize: 28,
       fontWeight: 'bold',
       color: '#FDFEFF',
       marginBottom: '25%',
     },
-    buttonContainer: {
-      marginBottom: 25,
-      width: '80%',
+    touchOpacityButton: {
+        marginBottom: 25,
+        width: '80%',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: '#116466',
+        borderRadius: 10
     },
-    button: {
-      color: '#2bfaff',
-      backgroundColor: '#2bfaff',
-    },
-  });
+    text: {
+        color: "#FFFFFF",
+        fontWeight: 'bold',
+        fontSize: 16
+    }
+});
 
   
 export default WelcomeScreen;
