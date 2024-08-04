@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { getWalletAddress, getWalletAlias } from '../utils/WalletService';
 
@@ -34,14 +34,12 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.container}>
             <Text style={styles.title}>Home</Text>
             <Text style={styles.walletText}>Signed Wallet:   {walletAddress}</Text>
-            <Button
-                title="Sync wallet with plugin"
-                onPress={() => navigation.navigate("QRWalletAddress")}
-            />
-            <Button
-                title="Scan QR"
-                onPress={() => navigation.navigate('ScanQR')}
-            />
+            <TouchableOpacity style={styles.touchOpacityButton} onPress={() => navigation.navigate("QRWalletAddress")}>
+                <Text style={styles.touchOpacityText}>Sync wallet with plugin</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchOpacityButton} onPress={() => navigation.navigate('ScanQR')}>
+                <Text style={styles.touchOpacityText}>Scan QR</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -70,6 +68,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#FDFEFF',
         marginBottom: '5%',
+    },
+    touchOpacityButton: {
+        marginTop: 25,
+        width: '80%',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: '#116466',
+        borderRadius: 10
+    },
+    touchOpacityText: {
+        color: "#FFFFFF",
+        fontWeight: 'bold',
+        fontSize: 16
     }
 });
 

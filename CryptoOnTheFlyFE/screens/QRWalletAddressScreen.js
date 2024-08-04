@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { getWalletAddress, getWalletAlias } from '../utils/WalletService';
 
@@ -26,9 +26,12 @@ const QRWalletAddressScreen = ({ navigation }) => {
                 <View style={styles.qrView}>
                     <Text style={styles.walletText}>{shortenedWalletAddress}</Text>
                     <QRCode value={walletAddress} size={300} /> 
+                    <View style={styles.div}/>
                 </View>
             : null}
-            <Button title="Done" onPress={() => navigation.navigate('Home')}/>
+            <TouchableOpacity style={styles.touchOpacityButton} onPress={() => navigation.navigate('Home')}>
+                <Text style={styles.text}>Done</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -38,12 +41,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        //backgroundColor: '#1A1733',
+        backgroundColor: '#1A1733',
     },
     qrView: {
-        flex: 0.8,
+        flex: 0.6,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#FFF',
+        width: '100%'
     },
     walletText: {
         fontSize: 16,
@@ -54,9 +59,25 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        //color: '#FDFEFF',
+        color: '#FDFEFF',
         marginBottom: '10%',
     },
+    touchOpacityButton: {
+        marginTop: 25,
+        width: '80%',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: '#116466',
+        borderRadius: 10
+    },
+    text: {
+        color: "#FFFFFF",
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    div: {
+      height: 15
+    }
 });
 
 export default QRWalletAddressScreen;
