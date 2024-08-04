@@ -11,6 +11,7 @@ Inside /CryptoOnTheFlyFE run:
 - You will need to download Expo Go app in your phone or emulator.
 - `npm install`
 - `npx expo start`
+- Once the aplication starts, to test the app in a physicall device scan the generated QR code from the Expo Go application.
 
 ## Next features
 - Add extra security layer for password
