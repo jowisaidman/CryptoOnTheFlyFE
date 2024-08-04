@@ -1,13 +1,13 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function ScanQRScreen({ navigation }) {
   const [permission, requestPermission] = useCameraPermissions();
-  const [scannedData, setScannedData] = useState('');
 
   if (!permission) {
-    return <Text>No access to camera, please give permissions in settings.</Text>
+    return ( //TODO: add view
+        <Text>No access to camera, please give permissions in settings.</Text>
+    )
   }
 
   if (!permission.granted) {
@@ -20,8 +20,7 @@ export default function ScanQRScreen({ navigation }) {
   }
 
   function handleBarCodeScanned({ data }) {
-    setScannedData(data);
-    navigation.navigate('SignMessage', {messageInfo: scannedData})
+    navigation.navigate('SignMessage', {messageInfo: data})
   }
 
   return (
@@ -42,10 +41,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    message: {
-      textAlign: 'center',
-      paddingBottom: 10,
+      backgroundColor: '#1A1733',
     },
     camera: {
       width: "90%",
@@ -53,29 +49,5 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       overflow: 'hidden',
     },
-    buttonContainer: {
-      position: 'absolute',
-      bottom: 50,
-      flexDirection: 'row',
-      width: '100%',
-      justifyContent: 'center',
-      backgroundColor: 'transparent',
-    },
-    button: {
-      alignSelf: 'flex-end',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      padding: 10,
-      borderRadius: 5,
-    },
-    text: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: 'white',
-    },
-    scannedData: {
-        fontSize: 16,
-        marginTop: 10,
-      },
 });
   
