@@ -41,16 +41,27 @@ export async function signMessage(message, mnemonic) {
   const formattedMessage = JSON.parse(message); // TODO: how we handle this? if a message is not a json? should be check with the plugin
   console.log(formattedMessage)
 
-  const gasLimitHex = '0x' + formattedMessage.gasLimit.toString(16);
+  let gasLimitHex;
+  if (formattedMessage.gasLimit == null) {
+    gasLimitHex = '0x493E0';
+  }
+  else if (typeof formattedMessage.gasLimit === 'number') {
+    gasLimitHex = '0x' + formattedMessage.gasLimit.toString(16);
+  }
+  else {
+    gasLimitHex = formattedMessage.gasLimit;
+  }
+    
+
   const transaction = {
     type: formattedMessage.type,
-    chainId: formattedMessage.chainId,
+    chainId: formattedMessage.chainId == null ? 84532 : formattedMessage.chainId,
     nonce: formattedMessage.nonce,
-    maxPriorityFeePerGas: ethers.parseUnits(formattedMessage.maxPriorityFeePerGas, 'wei').toString(),
-    maxFeePerGas: ethers.parseUnits(formattedMessage.maxFeePerGas, 'wei').toString(),
+    maxPriorityFeePerGas: ethers.parseUnits("358428", 'wei').toString(),
+    maxFeePerGas: ethers.parseUnits("94510220", 'wei').toString(),
     gasLimit: gasLimitHex,
     to: formattedMessage.to,
-    value: ethers.parseUnits(formattedMessage.value, 'ether').toString(), 
+    value: typeof formattedMessage.value === 'number' ? ethers.parseUnits(formattedMessage.value, 'wei').toString() : formattedMessage.value, 
     data: formattedMessage.data,
     accessList: formattedMessage.accessList
   }

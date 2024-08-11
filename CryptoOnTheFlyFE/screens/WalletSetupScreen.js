@@ -14,11 +14,13 @@ const WalletSetupScreen = ({ route, navigation }) => {
         setTimeout(async () => {
             if (route.params.seedSource === 'create') {
                 //const walletDetails = createNewSeedPhrase(); // If we want to create new wallets on each init
-                const mnemonic = await getValueFor("seedPhrase");
+                const mnemonic = "situate harsh jar siege click theme small shuffle pluck surround ready depart";
+
                 let walletDetails = {
-                    wallet: getWalletAddress(),
+                    wallet: "0x5049eefB03A5340aC55239eF1d2e21E35339E748",//getWalletAddress(),
                     mnemonic
                 }
+                
                 walletDetails.mnemonic = walletDetails.mnemonic.split(" ");
                 setWallet(walletDetails);
                 setIsLoading(false);
