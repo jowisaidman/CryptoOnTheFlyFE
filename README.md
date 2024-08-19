@@ -1,6 +1,20 @@
 # CryptoOnTheFly
 
+## Link to Hackathon project (Taikai)
+
+ - https://taikai.network/ethargentina/hackathons/level-up-argentina-2024/projects/clz64m1v604hfwx0104y25tky/idea
+
 ## Introduction
+
+CryptoOnTheFly
+
+Getting into web3 today can be pretty tricky. Keeping your keys on your device makes them vulnerable to hacks and other attacks. Hardware wallets are more secure, but they’re usually pricey, hard to use, and need to connect to another device somehow (like with Bluetooth or a cable). Plus, they’re not available everywhere. All these hassles and costs can turn off a lot of people who just want an easy, affordable and safe way to manage their assets.
+
+CryptoOnTheFly offers a user-friendly, secure, low-cost, and eco-friendly cold wallet solution. Our solution allows users to store cryptocurrencies and sign transactions on an offline device, eliminating the need for any physical or wireless connections to other devices.
+
+How is made?
+
+We have developed an application that can be installed on old smartphones, that doesn't need to be connected to anything, turning them into secure cold wallets. Additionally, we have created a plugin that interacts with the blockchain. This plugin generates transaction messages, which are converted into QR codes. These QR codes contain all necessary transaction information. The mobile application reads these QR codes, allowing the transaction to be signed completely offline by the recycled device. Once the transaction is signed, the device generates a new QR code containing the signed transaction. The plugin then scans this QR code and broadcasts the transaction to the blockchain.
 
 In this repository you will find two applications, one mobile application for a offline low cost cold wallet and a chrome extension for creating the messages the offline wallet can sign. You will be able to install this aplication in your phone, create or import and existing wallet and sign messages completely disconnected, giving a 2nd chance to your old phone to act as a hardware wallet.
 
