@@ -13,7 +13,7 @@ const WelcomeScreen = ({ navigation }) => {
         }
     }
     checkSeedPhrase();
-  }, []); 
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#1A1733',
+      backgroundColor: '#FFFFFF',
     },
     title: {
       fontSize: 28,
@@ -57,5 +57,5 @@ const styles = StyleSheet.create({
     }
 });
 
-  
+
 export default WelcomeScreen;

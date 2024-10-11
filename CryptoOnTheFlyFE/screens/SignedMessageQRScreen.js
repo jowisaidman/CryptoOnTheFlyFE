@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1A1733',
+        backgroundColor: '#FFFFFF',
     },
     signedText: {
         fontSize: 16,

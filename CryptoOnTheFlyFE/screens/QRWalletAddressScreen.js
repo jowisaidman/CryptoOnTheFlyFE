@@ -17,7 +17,7 @@ const QRWalletAddressScreen = ({ navigation }) => {
             setWalletAddress(wallet)
         }
         obtainWalletAddress();
-    }, []); 
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -25,7 +25,7 @@ const QRWalletAddressScreen = ({ navigation }) => {
             {walletAddress ?
                 <View style={styles.qrView}>
                     <Text style={styles.walletText}>{shortenedWalletAddress}</Text>
-                    <QRCode value={walletAddress} size={300} /> 
+                    <QRCode value={walletAddress} size={300} />
                     <View style={styles.div}/>
                 </View>
             : null}
@@ -41,14 +41,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1A1733',
+        backgroundColor: '#FFFFFF',
     },
     qrView: {
         flex: 0.6,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FFF',
-        width: '100%'
+        width: '100%',
+        height: '100%'
     },
     walletText: {
         fontSize: 16,

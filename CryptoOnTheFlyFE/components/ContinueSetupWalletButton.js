@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { save } from '../utils/SecureStorage';
 
 const ContinueSetupWalletButton = ({seedPhrase, navigation}) => {
-  
+
     const handleContinue = async () => {
         await save("seedPhrase", seedPhrase);
         navigation.navigate('Home');

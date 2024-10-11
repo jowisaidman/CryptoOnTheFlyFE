@@ -2,7 +2,7 @@ import * as ethers from 'ethers';
 import { getValueFor } from './SecureStorage';
 
 export function createNewSeedPhrase() {
-    // TODO: do it with secure randomness & store it in device secureStore 
+    // TODO: do it with secure randomness & store it in device secureStore
     let randomBytes = new Uint8Array(16);
     for (let i = 0; i < 16; i++) {
       randomBytes[i] = Math.floor(Math.random() * 256);
@@ -51,17 +51,17 @@ export async function signMessage(message, mnemonic) {
   else {
     gasLimitHex = formattedMessage.gasLimit;
   }
-    
+
 
   const transaction = {
     type: formattedMessage.type,
     chainId: formattedMessage.chainId == null ? 84532 : formattedMessage.chainId,
     nonce: formattedMessage.nonce,
-    maxPriorityFeePerGas: ethers.parseUnits("358428", 'wei').toString(),
-    maxFeePerGas: ethers.parseUnits("94510220", 'wei').toString(),
+    maxPriorityFeePerGas: formattedMessage.maxPriorityFeePerGas,
+    maxFeePerGas: formattedMessage.maxFeePerGas,
     gasLimit: gasLimitHex,
     to: formattedMessage.to,
-    value: typeof formattedMessage.value === 'number' ? ethers.parseUnits(formattedMessage.value, 'wei').toString() : formattedMessage.value, 
+    value: typeof formattedMessage.value === 'number' ? String(formattedMessage.value) : formattedMessage.value,
     data: formattedMessage.data,
     accessList: formattedMessage.accessList
   }
